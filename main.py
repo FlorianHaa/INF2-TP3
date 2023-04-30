@@ -63,7 +63,17 @@ class Etudiant:
         self.__connais_python=connais_python
 
     def to_dict(self):
-        dico=(
-        return f""
+         return {"nom": self.nom , "annee_naissance":self.annee_naissance,"gpa":self.gpa,"connais_python":self.connais_python}
+
+class Groupe(Etudiant):
+
+    def __init__(self,nom,annee_naissance,gpa,connais_python):
+        super.__init__(self,nom,annee_naissance,gpa,connais_python)
+
+    def sauvagrder_csv(self,chemin):
 
 
+
+
+
+#Exercice 3
