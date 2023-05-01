@@ -19,6 +19,8 @@ pi=list(pi)
 print(pi)
 
 #Exercice2
+import csv
+
 class Etudiant:
     def __init__(self,nom,annee_naissance,gpa,connais_python):
         self.nom=nom
@@ -39,7 +41,7 @@ class Etudiant:
     def annee_naissance(self):
         return self.__annee_naissance
     @annee_naissance.setter
-    def nom(self, annee_naissance):
+    def annee_naissance(self, annee_naissance):
         if not isinstance(annee_naissance, int):
             raise TypeError("Entrez un int")
         self.__annee_naissance=annee_naissance
@@ -48,7 +50,7 @@ class Etudiant:
     def gpa(self):
         return self.__gpa
     @gpa.setter
-    def nom(self, gpa):
+    def gpa(self, gpa):
         if not isinstance(gpa, float):
             raise TypeError("Entrez un float")
         self.__gpa=gpa
@@ -57,23 +59,46 @@ class Etudiant:
     def connais_python(self):
         return self.__connais_python
     @connais_python.setter
-    def nom(self, connais_python):
+    def connais_python(self, connais_python):
         if not isinstance(connais_python, bool):
             raise TypeError("Entrez un booléen")
         self.__connais_python=connais_python
 
     def to_dict(self):
-         return {"nom": self.nom , "annee_naissance":self.annee_naissance,"gpa":self.gpa,"connais_python":self.connais_python}
+         print( {"nom": self.nom , "annee_naissance":self.annee_naissance,"gpa":self.gpa,"connais_python":self.connais_python})
 
-class Groupe(Etudiant):
+    @staticmethod
+    def from_dict(d):
+        return Etudiant(
+            nom=d["nom"],
+            annee_naissance=int(d["annee_naissance"]),
+            gpa=float(d["gpa"]),
+            connais_python=bool(d["connais_python"])
+        )
 
-    def __init__(self,nom,annee_naissance,gpa,connais_python):
-        super.__init__(self,nom,annee_naissance,gpa,connais_python)
-
-    def sauvagrder_csv(self,chemin):
 
 
+class Groupe:
+    def __init__(self,etudiants):
+        self.etudiants=etudiants
+    def sauvegarder_csv(self,chemin):
+        with open('chemin', 'w', newline='') as f:
+            fieldnames = ['nom', 'annee_naissance','gpa','connais_python']
+            writer = f.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            for etudiant in self.etudiants:
+                writer.writerow(etudiant.to_dict)
+
+etudiant1=Etudiant("Florian",2002,2.8,False)
+etudiant2=Etudiant("Kevin",2004,5.0,True)
+etudiant3=Etudiant("Raph",2011,3.2,True)
+etudiant4=Etudiant("Julian",2000,1.9,False)
+
+etudiant1.to_dict()
+etudiant2.to_dict()
+etudiant3.to_dict()
+etudiant4.to_dict()
+
+liste=Groupe([etudiant1,etudiant2,etudiant3,etudiant4])
 
 
-
-#Exercice 3
