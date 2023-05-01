@@ -102,3 +102,15 @@ etudiant4.to_dict()
 liste=Groupe([etudiant1,etudiant2,etudiant3,etudiant4])
 
 
+#Exercice 3
+import pickle
+# Lecture
+with open("poeme.txt", "rb") as f:
+    contenu = pickle.load(f)
+# Écriture
+with open("poeme.txt", "wb") as f:
+    pickle.dump(contenu, f)
+
+import pickle
+with open("poeme.txt","wb") as f:
+    pickle.duloload(f)
