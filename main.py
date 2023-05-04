@@ -12,7 +12,7 @@ pi_chara=([str(len(mot)%10) for mot in poeme])
 pi_chiffre_str=str()
 for chiffre in pi_chara:
     pi_chiffre_str+=chiffre
-pi_chiffre_str=pi_chiffre_str[:1]+"."+ pi_chiffre_str[1:]
+pi_chiffre_str=pi_chiffre_str[:1]+"."+ pi_chiffre_str[1:] # placement de la virgule
 
 pi=str(math.pi) #pi convertit en caractere
 def exo1():
@@ -67,7 +67,7 @@ class Etudiant:
     @connais_python.setter
     def connais_python(self, connais_python):
         if not isinstance(connais_python, bool):
-            raise TypeError("Entrer un bolléen")
+            raise TypeError("Entrer un booléen")
         self._connais_python = connais_python
 
     def to_dict(self):
@@ -124,13 +124,28 @@ def exo2():
 
 #Exercice 3
 import pickle
-# Lecture
+def fichier_binaire(chemin, obj):
+    with open(chemin, "wb") as file:
+        pickle.dump(obj, file)
+    with open(chemin, "rb") as file:
+        groupe_post_bin = pickle.load(file)
+    liste_etudiants_base = obj.liste_etudiants
+    liste_etudiants_post_bin = groupe_post_bin.liste_etudiants
+    return (liste_etudiants_base, liste_etudiants_post_bin)
+
+def exo3():
+    liste_etudiants_base, liste_etudiants_post_bin = fichier_binaire("Groupe_Ex3.csv", exo2())
+    etudiant_base1, etudiant_base2 = liste_etudiants_base[0].to_dict(), liste_etudiants_base[1].to_dict()
+    etudiant_post_bin1, etudiant_post_bin2 = liste_etudiants_post_bin[0].to_dict(), liste_etudiants_post_bin[1].to_dict()
+    print(etudiant_base1 == etudiant_post_bin1)
+    print(etudiant_base2 == etudiant_post_bin2)
+
 
 
 def main():
     exo1()
     exo2()
-    exo1()
+    exo3()
 
 if __name__ =='__main__':
     main()
