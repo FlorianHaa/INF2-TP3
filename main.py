@@ -12,15 +12,18 @@ pi_chara=([str(len(mot)%10) for mot in poeme])
 pi_chiffre_str=str()
 for chiffre in pi_chara:
     pi_chiffre_str+=chiffre
-pi_chiffre=float(pi_chiffre_str[0]+"."+pi_chiffre_str[1:])
+pi_chiffre_str=pi_chiffre_str[0]+"."+pi_chiffre_str[1:]
 
-print(pi_chiffre)
+pi=str(math.pi) #pi convertit en caractere
 
-pi=str(math.pi)
-print(pi)
-pi=pi.replace(".","")
-pi=list(pi)
-print(pi)
+print(f"Voici le pi obtenu grâce au poème : {pi_chiffre_str}")
+print(f"Voici le pi du module math : {pi}")
+print(f"Est ce que le pi obtenu grâce au poème est similaire au pi du module math ? {float(pi_chiffre_str) ==float(pi)}")
+
+
+#Creation d'un fichier avec pi calcule grace au poeme
+with open("pi_en_fichier.txt","w",encoding="utf-8") as f:
+    f.write(pi_chiffre_str)
 
 
 #Exercice2
