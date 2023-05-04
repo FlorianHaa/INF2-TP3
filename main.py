@@ -12,21 +12,20 @@ pi_chara=([str(len(mot)%10) for mot in poeme])
 pi_chiffre_str=str()
 for chiffre in pi_chara:
     pi_chiffre_str+=chiffre
-pi_chiffre_str=pi_chiffre_str[0]+"."+pi_chiffre_str[1:]
+pi_chiffre_str=pi_chiffre_str[:1]+"."+ pi_chiffre_str[1:]
 
 pi=str(math.pi) #pi convertit en caractere
-
-print(f"Voici le pi obtenu grâce au poème : {pi_chiffre_str}")
-print(f"Voici le pi du module math : {pi}")
-print(f"Est ce que le pi obtenu grâce au poème est similaire au pi du module math ? {float(pi_chiffre_str) ==float(pi)}")
-
-
-#Creation d'un fichier avec pi calcule grace au poeme
-with open("pi_en_fichier.txt","w",encoding="utf-8") as f:
-    f.write(pi_chiffre_str)
+def exo1():
+    print(f"Voici le pi obtenu grâce au poème : {pi_chiffre_str}")
+    print(f"Voici le pi du module math : {pi}")
+    print(f"Est ce que le pi obtenu grâce au poème est similaire au pi du module math ? {float(pi_chiffre_str) ==float(pi)} (à quelques décimales près)")
+    #Creation d'un fichier avec pi calcule grace au poeme
+    with open("pi_en_fichier.txt","w",encoding="utf-8") as f:
+        f.write(pi_chiffre_str)
 
 
 #Exercice2
+
 import csv
 
 class Etudiant:
@@ -102,9 +101,13 @@ class Groupe(Etudiant):
         return obj_temporaire
 
 
-def Ex2():
-    E1 = Etudiant(nom="Pestrimaux", annee_naissance=2002, gpa=1.0, connais_python=True)
-    E2 = Etudiant(nom="Barrios", annee_naissance=2001, gpa=1.1, connais_python=False)
+def exo2():
+    E1 = Etudiant(nom="Pestrimaux", annee_naissance=2002, gpa=0.3, connais_python=True)
+    E2 = Etudiant(nom="Barrios", annee_naissance=2001, gpa=3.8, connais_python=False)
+    E3 = Etudiant("Florian", 2002, 2.8, False)
+    E4 = Etudiant("Kevin", 2004, 5.0, True)
+    E5 = Etudiant("Raph", 2011, 3.2, True)
+    E6 = Etudiant("Julian", 2000, 1.9, False)
     groupe = Groupe()
     groupe.ajouter_etudiant(E1)
     groupe.ajouter_etudiant(E2)
@@ -112,29 +115,22 @@ def Ex2():
 
     groupe2 = Groupe.charger_csv("Groupe.csv")
     return groupe
-
-etudiant1=Etudiant("Florian",2002,2.8,False)
-etudiant2=Etudiant("Kevin",2004,5.0,True)
-etudiant3=Etudiant("Raph",2011,3.2,True)
-etudiant4=Etudiant("Julian",2000,1.9,False)
-
-etudiant1.to_dict()
-etudiant2.to_dict()
-etudiant3.to_dict()
-etudiant4.to_dict()
-
+    E1.to_dict()
+    E2.to_dict()
+    E3.to_dict()
+    E4.to_dict()
 
 
 
 #Exercice 3
 import pickle
 # Lecture
-with open("poeme.txt", "rb") as f:
-    contenu = pickle.load(f)
-# Écriture
-with open("poeme.txt", "wb") as f:
-    pickle.dump(contenu, f)
 
-import pickle
-with open("poeme.txt","wb") as f:
-    pickle.duloload(f)
+
+def main():
+    exo1()
+    exo2()
+    exo1()
+
+if __name__ =='__main__':
+    main()
