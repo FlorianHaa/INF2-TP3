@@ -1,22 +1,27 @@
 import math
-with open("poeme.txt","r") as f:
-    contenu = f.read()
-contenu=contenu.split(" ")
-liste=[]
-for element in contenu:
-    #element.split(""\n"")
-    for lettre in element:
-        if lettre == " " or lettre == "\n" or lettre == "'" or lettre == "!":
-            lettre=""
+with open("poeme.txt","r",encoding="utf-8") as f:
+    poeme = f.read()
+    poeme=poeme.replace("!","")
+    poeme = poeme.replace("'", " ")
+    poeme = poeme.replace("?", "")
+    poeme = poeme.replace(",", "")
+    poeme = poeme.replace(".", "")
+    poeme=poeme.split()
 
-print(contenu)
-py=([len(element) for element in contenu])
-print(py)
+pi_chara=([str(len(mot)%10) for mot in poeme])
+pi_chiffre_str=str()
+for chiffre in pi_chara:
+    pi_chiffre_str+=chiffre
+pi_chiffre=float(pi_chiffre_str[0]+"."+pi_chiffre_str[1:])
+
+print(pi_chiffre)
 
 pi=str(math.pi)
+print(pi)
 pi=pi.replace(".","")
 pi=list(pi)
 print(pi)
+
 
 #Exercice2
 import csv
@@ -114,6 +119,3 @@ with open("poeme.txt", "wb") as f:
 import pickle
 with open("poeme.txt","wb") as f:
     pickle.duloload(f)
-
-
-salut
