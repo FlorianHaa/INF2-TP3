@@ -114,3 +114,6 @@ with open("poeme.txt", "wb") as f:
 import pickle
 with open("poeme.txt","wb") as f:
     pickle.duloload(f)
+
+
+salut
